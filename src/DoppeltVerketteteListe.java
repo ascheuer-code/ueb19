@@ -7,7 +7,7 @@ import java.util.ListIterator;
 public class DoppeltVerketteteListe<E> implements List<E> {
 
     public DoppeltVerketteteListe() {
-        this.size = 0;
+        size = 0;
     }
 
     private Knoten head;
@@ -25,30 +25,30 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return (this.getSize() == 0) ? true : false;
+        return (getSize() == 0) ? true : false;
     }
 
     @Override
     public boolean contains(Object o) {
         Knoten neu = head;
-        if (this.getSize() == 0) {
+        if (getSize() == 0) {
             return false;
         }
-        if (head.equals(o)) {
+        if (head.getValue().equals(o)) {
             return true;
         }
-        if (!head.equals(o) && head.getNext().equals(o)) {
+        if (!head.getValue().equals(o) && head.getNext().getValue().equals(o)) {
             return true;
         }
-        if (!head.equals(o) && !head.getNext().equals(o)) {
-            for (int i = 0; i < this.getSize(); i++) {
-                if (neu.getNext() != null) {
+        if (!head.getValue().equals(o) && !head.getNext().getValue().equals(o)) {
+            for (int i = 0; i < getSize(); i++) {
+                if (neu.getNext().getValue() != null) {
                     neu = head.getNext();
                 }
-                if (neu.getNext() == null) {
+                if (neu.getNext().getValue() == null) {
                     return false;
                 }
-                if (neu.equals(o)) {
+                if (neu.getValue().equals(o)) {
                     return true;
                 }
             }
@@ -59,7 +59,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     @Override
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        // Object[] b = new Object[this.size];
+        // Object[] b = new Object[size];
         // b = a;
         // return (T[]) b;
 
@@ -90,23 +90,29 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     @Override
     public boolean remove(Object o) {
         if (size == 0) {
-            return false;
+            throw new NullPointerException();
         }
         if (size == 1) {
-            head = null;
-            return true;
+            if (head.getValue().equals(o)) {
+                head = null;
+                size--;
+                return true;
+            }
         }
-        if (size == 2) {
-            tail = null;
-            return true;
+        if (size > 1) {
+            Knoten next = head;
+            for (int i = 0; i < size; i++) {
+                if (next.getValue().equals(o)) {
+                    next.getPrev().setNext(next.getNext());
+                    next.getNext().setPrev(next.getPrev());
+                    next = null;
+                    size--;
+                    return true;
+                }
+                next = next.getNext();
+            }
         }
-        if (size > 2) {
-            Knoten newTail = tail.getPrev();
-            tail = newTail;
-            tail.setNext(null);
-            return true;
-        }
-        return true;
+        return false;
     }
 
     @Override
@@ -115,21 +121,26 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         tail.setPrev(null);
         head = null;
         tail = null;
+
+        size = 0;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public E get(int index) {
         Knoten next = head;
-        if (this.size == 0) {
+        if (size == 0) {
             throw new NullPointerException();
         }
-        if (size == 1) {
+        if (index == 0) {
             return (E) next;
+        }
+        if (index == size - 1) {
+            return (E) tail;
         }
         for (int i = 0; i < index; i++) {
 
-            next = head.getNext();
+            next = next.getNext();
         }
         return (E) next;
     }
@@ -138,7 +149,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     @SuppressWarnings("unchecked")
     public E set(int index, E element) {
         Knoten next = head;
-        if (this.size == 0) {
+        if (size == 0) {
             throw new NullPointerException();
         }
         if (size == 1) {
@@ -147,7 +158,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         }
         for (int i = 0; i < index; i++) {
 
-            next = head.getNext();
+            next = next.getNext();
         }
         next.setValue(element);
         return (E) next;
@@ -157,11 +168,11 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     public void add(int index, E element) {
         Knoten neu = new Knoten(element);
         ;
-        if (this.size == 0) {
+        if (size == 0) {
             head = neu;
             return;
         }
-        if (this.size < index) {
+        if (size < index) {
             Knoten temp = tail;
             tail = neu;
             tail.setPrev(temp);
@@ -185,10 +196,10 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         if (size == 0) {
             throw new NullPointerException();
         }
-        if (this.size < index) {
+        if (size < index) {
             throw new NullPointerException();
         }
-        if (this.size == index) {
+        if (size == index) {
             Knoten temp = tail.getPrev();
             tail = tail.getPrev();
             temp.setNext(null);
@@ -203,15 +214,15 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
-        if (this.size == 0) {
+        if (size == 0) {
             throw new NullPointerException();
         }
-        if (this.size == 1) {
+        if (size == 1) {
             return (head.equals(o)) ? 1 : -1;
         }
-        if (this.size > 1) {
+        if (size > 1) {
             Knoten next = head;
-            for (int i = 0; i < this.size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (next.equals(o)) {
                     return i;
                 }
@@ -276,4 +287,19 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     public Object[] toArray() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < size; i++) {
+            Knoten toString = new Knoten(get(i));
+
+            sb.append(toString.getValue() + "\n");
+
+        }
+        return sb.toString();
+    }
+
 }

@@ -1,4 +1,3 @@
-
 public class Knoten {
 
     public Knoten(Object value) {
@@ -34,4 +33,10 @@ public class Knoten {
     public void setNext(Knoten next) {
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
+
 }
