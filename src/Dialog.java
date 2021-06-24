@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class Dialog extends Lib_Dialog {
 
@@ -60,7 +62,7 @@ public class Dialog extends Lib_Dialog {
     }
 
     public void addAllFromCollection() {
-        // Blah
+        System.out.println(liste.addAll(menu1));
     }
 
     public void clearList() {
@@ -76,15 +78,16 @@ public class Dialog extends Lib_Dialog {
         System.out.println("\nWert eingeben:");
         liste.add(input.next());
     }
-    // public void (){
-    //
-    // }
-    // public void (){
-    //
-    // }
-    // public void (){
-    //
-    // }
+
+    public void removeSpecificObject() {
+        System.out.println("\nWas soll entfernt werden?");
+        System.out.println(liste.remove(input.next()));
+    }
+
+    public void setSpecificIndexNew() {
+        System.out.println("\n Index angeben danach Objekt");
+        System.out.println(liste.set(input.nextInt(), input.next()));
+    }
     // public void (){
     //
     // }
