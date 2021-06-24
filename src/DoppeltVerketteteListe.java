@@ -35,19 +35,16 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         if (getSize() == 0) {
             return false;
         }
-        if (head.getValue().equals(o)) {
+        if (neu.getValue().equals(o)) {
             return true;
         }
-        if (!head.getValue().equals(o) && head.getNext().getValue().equals(o)) {
-            return true;
-        }
-        if (!head.getValue().equals(o) && !head.getNext().getValue().equals(o)) {
+        if (!neu.getValue().equals(o)) {
             for (int i = 0; i < getSize(); i++) {
-                if (neu.getNext().getValue() != null) {
-                    neu = head.getNext();
-                }
                 if (neu.getNext().getValue() == null) {
                     return false;
+                }
+                if (neu.getNext().getValue() != null) {
+                    neu = neu.getNext();
                 }
                 if (neu.getValue().equals(o)) {
                     return true;
