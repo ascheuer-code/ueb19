@@ -95,8 +95,31 @@ public class TestDoppeltVerketteteListe {
 
     @Test
     void testToArray() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        liste.add("Affe");
+        liste.add("Maultier");
+        liste.add("Esel");
+        liste.add("Loewe");
 
-        // macht irgendwie keinen sinn grad
+        Object[] newArray = liste.toArray(Object[]::new);
+        for (Object object : newArray) {
+            System.out.println(object);
+        }
+
+    }
+
+    @Test
+    void testIndexOF() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        liste.add("Affe");
+        liste.add("Maultier");
+        liste.add("Esel");
+        liste.add("Loewe");
+
+        assertEquals(0, liste.indexOf("Affe"));
+        assertEquals(1, liste.indexOf("Maultier"));
+        assertEquals(2, liste.indexOf("Esel"));
+        assertEquals(3, liste.indexOf("Loewe"));
     }
 
 }

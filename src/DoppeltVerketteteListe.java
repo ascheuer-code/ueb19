@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -59,11 +60,29 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     @Override
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        // Object[] b = new Object[size];
-        // b = a;
-        // return (T[]) b;
 
-        return (T[]) Arrays.stream(a).toArray(Object[]::new);
+        a = (T[]) new Object[size];
+        if (size == 0) {
+            throw new NullPointerException();
+        }
+        if (size == 1) {
+            a[0] = (T) head;
+            return a;
+        }
+        if (size == 2) {
+            a[0] = (T) head;
+            a[1] = (T) tail;
+            return a;
+        }
+        if (size > 2) {
+            int index = 0;
+            for (int i = 0; i < size; i++) {
+                a[i] = (T) get(i);
+            }
+        }
+        return a;
+
+        // return (T[]) Arrays.stream(a).toArray(Object[]::new);
     }
 
     @Override
@@ -218,12 +237,12 @@ public class DoppeltVerketteteListe<E> implements List<E> {
             throw new NullPointerException();
         }
         if (size == 1) {
-            return (head.equals(o)) ? 1 : -1;
+            return (head.getValue().equals(o)) ? 1 : -1;
         }
         if (size > 1) {
             Knoten next = head;
             for (int i = 0; i < size; i++) {
-                if (next.equals(o)) {
+                if (next.getValue().equals(o)) {
                     return i;
                 }
                 next = next.getNext();
