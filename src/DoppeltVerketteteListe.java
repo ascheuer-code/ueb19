@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +6,7 @@ import java.util.ListIterator;
 public class DoppeltVerketteteListe<E> implements List<E> {
 
     public DoppeltVerketteteListe() {
-        size = 0;
+        this.size = 0;
     }
 
     private Knoten head;
@@ -35,8 +33,12 @@ public class DoppeltVerketteteListe<E> implements List<E> {
         if (getSize() == 0) {
             return false;
         }
-        if (neu.getValue().equals(o)) {
-            return true;
+        if (size == 1) {
+            if (neu.getValue().equals(o)) {
+                return true;
+            } else {
+                return false;
+            }
         }
         if (!neu.getValue().equals(o)) {
             for (int i = 0; i < getSize(); i++) {
@@ -72,14 +74,11 @@ public class DoppeltVerketteteListe<E> implements List<E> {
             return a;
         }
         if (size > 2) {
-            int index = 0;
             for (int i = 0; i < size; i++) {
                 a[i] = (T) get(i);
             }
         }
         return a;
-
-        // return (T[]) Arrays.stream(a).toArray(Object[]::new);
     }
 
     @Override
