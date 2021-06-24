@@ -61,6 +61,11 @@ public class Dialog extends Lib_Dialog {
         }
     }
 
+    public void add() {
+        System.out.println("\nWert eingeben:");
+        liste.add(input.next());
+    }
+
     public void addAllFromCollection() {
         System.out.println(liste.addAll(menu1));
     }
@@ -74,22 +79,22 @@ public class Dialog extends Lib_Dialog {
         System.out.println(liste.get(input.nextInt()));
     }
 
-    public void add() {
-        System.out.println("\nWert eingeben:");
-        liste.add(input.next());
+    public void setSpecificIndexNew() {
+        System.out.println("\n Index angeben danach Objekt");
+        System.out.println(liste.set(input.nextInt(), input.next()));
     }
+
+    // public void addAtSpecificIndex(){
+    //
+    // }
 
     public void removeSpecificObject() {
         System.out.println("\nWas soll entfernt werden?");
         System.out.println(liste.remove(input.next()));
     }
 
-    public void setSpecificIndexNew() {
-        System.out.println("\n Index angeben danach Objekt");
-        System.out.println(liste.set(input.nextInt(), input.next()));
+    public void getItemOfIndex() {
+
     }
-    // public void (){
-    //
-    // }
 
 }

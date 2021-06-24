@@ -30,7 +30,7 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     @Override
     public boolean contains(Object o) {
         Knoten neu = head;
-        if (getSize() == 0) {
+        if (size == 0) {
             return false;
         }
         if (size == 1) {
@@ -40,8 +40,14 @@ public class DoppeltVerketteteListe<E> implements List<E> {
                 return false;
             }
         }
+        if (neu.getValue().equals(o)) {
+            return true;
+        }
         if (!neu.getValue().equals(o)) {
             for (int i = 0; i < getSize(); i++) {
+                if (!neu.getValue().equals(o) && neu == tail) {
+                    return false;
+                }
                 if (neu.getNext().getValue() == null) {
                     return false;
                 }
@@ -208,13 +214,13 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     @SuppressWarnings("unchecked")
     public E remove(int index) {
 
-        if (size == 0) {
-            throw new NullPointerException();
+        if (size == 1 && index == 1) {
+            head = null;
         }
         if (size < index) {
             throw new NullPointerException();
         }
-        if (size == index) {
+        if (size == index && size > 1) {
             Knoten temp = tail.getPrev();
             tail = tail.getPrev();
             temp.setNext(null);
