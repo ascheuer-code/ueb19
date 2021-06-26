@@ -255,6 +255,14 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     @Override
+    public boolean addAll(Collection<? extends E> c) {
+        for (E e : c) {
+            add(e);
+        }
+        return true;
+    }
+
+    @Override
     public int lastIndexOf(Object o) {
         throw new UnsupportedOperationException();
     }
@@ -277,14 +285,6 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     @Override
     public boolean containsAll(Collection<?> c) {
         throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends E> c) {
-        for (E e : c) {
-            add(e);
-        }
-        return true;
     }
 
     @Override

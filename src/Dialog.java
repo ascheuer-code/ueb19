@@ -84,9 +84,11 @@ public class Dialog extends Lib_Dialog {
         System.out.println(liste.set(input.nextInt(), input.next()));
     }
 
-    // public void addAtSpecificIndex(){
-    //
-    // }
+    public void addAtSpecificIndex() {
+        System.out.println("Index angeben dann Objekt");
+        liste.add(input.nextInt(), input.next());
+        liste.toString();
+    }
 
     public void removeSpecificObject() {
         System.out.println("\nWas soll entfernt werden?");
@@ -95,6 +97,8 @@ public class Dialog extends Lib_Dialog {
 
     public void getItemOfIndex() {
 
+        Knoten a = (Knoten) liste.get(input.nextInt());
+        System.out.println(a.getValue());
     }
 
 }
