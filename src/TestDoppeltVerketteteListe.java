@@ -140,4 +140,15 @@ public class TestDoppeltVerketteteListe {
         assertEquals("Get Size of List\nCheck if List is Empty\nContains\nTo Array\n", liste.toString());
     }
 
+    @Test
+    void testGetIndex(){
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        liste.add("Affe");
+        liste.add("Maultier");
+        liste.add("Esel");
+        liste.add("Loewe");
+
+        liste.get
+    }
+
 }
