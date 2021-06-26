@@ -55,7 +55,7 @@ public class Dialog extends Lib_Dialog {
     }
 
     public void toArray() {
-        Object[] test = liste.toArray();
+        Object[] test = liste.toArray(Object[]::new);
         for (Object object : test) {
             System.out.println(object.toString());
         }

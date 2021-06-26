@@ -39,4 +39,8 @@ public class Knoten {
         return value.toString();
     }
 
+    public boolean hasNext() {
+        return (this.getNext() != null) ? true : false;
+    }
+
 }

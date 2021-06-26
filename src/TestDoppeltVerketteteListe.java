@@ -1,5 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.junit.jupiter.api.Test;
 
 public class TestDoppeltVerketteteListe {
@@ -120,6 +123,21 @@ public class TestDoppeltVerketteteListe {
         assertEquals(1, liste.indexOf("Maultier"));
         assertEquals(2, liste.indexOf("Esel"));
         assertEquals(3, liste.indexOf("Loewe"));
+    }
+
+    @Test
+    void testAddAll() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        Collection<String> menu1 = new ArrayList<>();
+
+        menu1.add("Get Size of List");
+        menu1.add("Check if List is Empty");
+        menu1.add("Contains");
+        menu1.add("To Array");
+
+        liste.addAll(menu1);
+
+        assertEquals("Get Size of List\nCheck if List is Empty\nContains\nTo Array\n", liste.toString());
     }
 
 }

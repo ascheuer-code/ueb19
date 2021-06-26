@@ -281,7 +281,10 @@ public class DoppeltVerketteteListe<E> implements List<E> {
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        throw new UnsupportedOperationException();
+        for (E e : c) {
+            add(e);
+        }
+        return true;
     }
 
     @Override
