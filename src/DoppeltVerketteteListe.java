@@ -268,13 +268,45 @@ public class DoppeltVerketteteListe<E> implements List<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException();
+        Iterator<E> it = new Iterator<E>() {
+
+            Knoten current = head;
+
+            @Override
+            public boolean hasNext() {
+                return (current.getNext() != null) ? true : false;
+            }
+
+            @Override
+            public E next() {
+                return (current.hasNext()) ? (E) current.getNext() : null;
+            }
+
+        };
+        return (ListIterator<E>) it;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public ListIterator<E> listIterator(int index) {
-        throw new UnsupportedOperationException();
+        Iterator<E> it = new Iterator<E>() {
+
+            Knoten current = (Knoten) get(index);
+
+            @Override
+            public boolean hasNext() {
+                return (current.getNext() != null) ? true : false;
+            }
+
+            @Override
+            public E next() {
+                return (current.hasNext()) ? (E) current.getNext() : null;
+            }
+
+        };
+        return (ListIterator<E>) it;
     }
 
     @Override
