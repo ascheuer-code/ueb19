@@ -67,7 +67,7 @@ public class Dialog extends Lib_Dialog {
     }
 
     public void addAllFromCollection() {
-        System.out.println(liste.addAll(menu1));
+        System.out.println("Wurde im JUnit test behandelt");
     }
 
     public void clearList() {
