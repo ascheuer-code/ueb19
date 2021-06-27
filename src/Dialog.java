@@ -24,6 +24,7 @@ public class Dialog extends Lib_Dialog {
         menu1.add("Set specific Index new");
         menu1.add("Add at specific Index");
         menu1.add("Remove index in List");
+        menu1.add("Index of Object");
 
         classObject = new Dialog();
 
@@ -92,6 +93,10 @@ public class Dialog extends Lib_Dialog {
     public void removeSpecificObject() {
         System.out.println("\nWas soll entfernt werden?");
         System.out.println(liste.remove(input.next()));
+    }
+
+    public void indexOfObject() {
+        System.out.println(liste.indexOf(input.next()));
     }
 
 }

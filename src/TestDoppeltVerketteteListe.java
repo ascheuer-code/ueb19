@@ -8,25 +8,25 @@ import org.junit.jupiter.api.Test;
 public class TestDoppeltVerketteteListe {
 
     @Test
-    void testAdd() {
-        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
-
-        assertEquals(true, liste.add("Affe"));
-        assertEquals(true, liste.add("Maultier"));
-        assertEquals(true, liste.add("Esel"));
-        assertEquals(true, liste.add("Loewe"));
-    }
-
-    @Test
-    void testClear() {
+    void testSize() {
         DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
         liste.add("Affe");
         liste.add("Maultier");
         liste.add("Esel");
         liste.add("Loewe");
 
-        liste.clear();
-        assertEquals(0, liste.size());
+        assertEquals(4, liste.size());
+    }
+
+    @Test
+    void testIsEmpty() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+
+        assertEquals(true, liste.isEmpty());
+
+        liste.add("Affe");
+
+        assertEquals(false, liste.isEmpty());
     }
 
     @Test
@@ -45,8 +45,69 @@ public class TestDoppeltVerketteteListe {
     }
 
     @Test
-    void testContainsAll() {
+    void testToArray() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        liste.add("Affe");
+        liste.add("Maultier");
+        liste.add("Esel");
+        liste.add("Loewe");
 
+        Object[] newArray = liste.toArray(Object[]::new);
+        for (Object object : newArray) {
+            System.out.println(object);
+        }
+
+    }
+
+    @Test
+    void testAdd() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+
+        assertEquals(true, liste.add("Affe"));
+        assertEquals(true, liste.add("Maultier"));
+        assertEquals(true, liste.add("Esel"));
+        assertEquals(true, liste.add("Loewe"));
+    }
+
+    @Test
+    void testRemove() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        liste.add("Affe");
+        liste.add("Maultier");
+        liste.add("Esel");
+        liste.add("Loewe");
+
+        assertEquals(true, liste.remove("Maultier"));
+        assertEquals(3, liste.getSize());
+        assertEquals("Affe\nEsel\nLoewe\n", liste.toString());
+
+    }
+
+    @Test
+    void testAddAll() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        Collection<String> menu1 = new ArrayList<>();
+
+        menu1.add("Get Size of List");
+        menu1.add("Check if List is Empty");
+        menu1.add("Contains");
+        menu1.add("To Array");
+
+        liste.addAll(menu1);
+
+        assertEquals("Get Size of List\nCheck if List is Empty\nContains\nTo Array\n", liste.toString());
+    }
+
+    @Test
+    void testClear() {
+        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
+        liste.add("Affe");
+        liste.add("Maultier");
+        liste.add("Esel");
+        liste.add("Loewe");
+
+        liste.clear();
+        assertEquals(0, liste.size());
     }
 
     @Test
@@ -69,20 +130,6 @@ public class TestDoppeltVerketteteListe {
     }
 
     @Test
-    void testRemove() {
-        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
-        liste.add("Affe");
-        liste.add("Maultier");
-        liste.add("Esel");
-        liste.add("Loewe");
-
-        assertEquals(true, liste.remove("Maultier"));
-        assertEquals(3, liste.getSize());
-        assertEquals("Affe\nEsel\nLoewe\n", liste.toString());
-
-    }
-
-    @Test
     void testSet() {
         DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
         liste.add("Affe");
@@ -97,18 +144,18 @@ public class TestDoppeltVerketteteListe {
     }
 
     @Test
-    void testToArray() {
+    void testAddAt() {
         DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
         liste.add("Affe");
         liste.add("Maultier");
         liste.add("Esel");
         liste.add("Loewe");
 
-        Object[] newArray = liste.toArray(Object[]::new);
-        for (Object object : newArray) {
-            System.out.println(object);
-        }
+        liste.add(1, "Tier");
 
+        assertEquals(1, liste.indexOf("Tier"));
+        assertEquals(0, liste.indexOf("Affe"));
+        assertEquals(2, liste.indexOf("Maultier"));
     }
 
     @Test
@@ -124,31 +171,4 @@ public class TestDoppeltVerketteteListe {
         assertEquals(2, liste.indexOf("Esel"));
         assertEquals(3, liste.indexOf("Loewe"));
     }
-
-    @Test
-    void testAddAll() {
-        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
-        Collection<String> menu1 = new ArrayList<>();
-
-        menu1.add("Get Size of List");
-        menu1.add("Check if List is Empty");
-        menu1.add("Contains");
-        menu1.add("To Array");
-
-        liste.addAll(menu1);
-
-        assertEquals("Get Size of List\nCheck if List is Empty\nContains\nTo Array\n", liste.toString());
-    }
-
-    @Test
-    void testGetIndex(){
-        DoppeltVerketteteListe<String> liste = new DoppeltVerketteteListe<>();
-        liste.add("Affe");
-        liste.add("Maultier");
-        liste.add("Esel");
-        liste.add("Loewe");
-
-        liste.get
-    }
-
 }
